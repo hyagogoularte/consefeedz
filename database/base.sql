@@ -1,0 +1,38 @@
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+
+DROP SCHEMA IF EXISTS `consefeedz` ;
+
+CREATE SCHEMA IF NOT EXISTS `consefeedz` DEFAULT CHARACTER SET utf8 ;
+USE `consefeedz` ;
+
+DROP TABLE IF EXISTS `car`;
+CREATE TABLE `car` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand` varchar(145) NOT NULL,
+  `model` varchar(145) NOT NULL COMMENT '			',
+  `year` varchar(4) NOT NULL,
+  `color` varchar(45) DEFAULT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+LOCK TABLES `car` WRITE;
+INSERT INTO `car` VALUES (1,'Marca','Modelo','2019','Cor','2019-01-12 22:45:34'),(2,'Marca1','Modelo1','2019','Cor1','2019-01-12 22:45:34'),(3,'Marca12','Modelo12','2019','Cor12','2019-01-12 22:45:34'),(4,'Marca123','Modelo123','2019','Cor123','2019-01-12 22:45:34');
+
+UNLOCK TABLES;
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(120) NOT NULL,
+  `password` varchar(40) NOT NULL,
+  `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `session` text,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+LOCK TABLES `user` WRITE;
+INSERT INTO `user` VALUES (1,'teste@teste.com','d0428df4feba0c0fb6801cfddb6972fe','2019-01-13 20:08:34','Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36');
+UNLOCK TABLES;

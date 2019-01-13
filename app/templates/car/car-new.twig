@@ -1,0 +1,73 @@
+{% extends "/layout/base.twig" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block cssInclude %}
+    <link href='{{ base_url() }}/css/home.css' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
+        <a class="navbar-brand mr-auto" href="/">Consefeedz</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form action="/logout" class="form-inline mt-2 mt-md-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sair</button>
+        </form>
+    </nav>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <form method="post" action="/car/new">
+                    <div class="form-group">
+                        <label class="control-label" for="brand">
+                            Marca
+                        </label>
+                        <input class="form-control" id="brand" name="brand" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="model">
+                            Modelo
+                        </label>
+                        <input class="form-control" id="model" name="model" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="year">
+                            Ano (yyyy)
+                        </label>
+                        <input class="form-control" id="year" name="year" type="number" maxlength="4"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="color">
+                            Cor
+                        </label>
+                        <input class="form-control" id="color" name="color" type="text"/>
+                    </div>
+                    <div class="form-group">
+                        <button id="back" class="btn btn-primary" name="submit" type="button">
+                            Voltar
+                        </button>
+                        <button class="btn btn-primary" name="submit" type="submit">
+                            Cadastrar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascript %}
+    <script>
+        $('back').click(function () {
+            window.location.href = '/';
+        });
+    </script>
+{% endblock %}

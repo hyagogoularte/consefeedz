@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Consefeedz
+                {% block title %}{% endblock %}
+            </title>
+
+            <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+            {% block cssInclude %}{% endblock %}
+        {% endblock %}
+    </head>
+
+    <body class="cover">
+
+        {% block navbar %}
+
+        {% endblock %}
+
+        {% block body %}
+            <!-- Template's Body Content -->
+        {% endblock %}
+
+        {% block footer %}
+            <!-- Template's Footer Content -->
+        {% endblock %}
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+        {% block javascript %}
+            <!-- Javascript Content -->
+        {% endblock %}
+    </body>
+</html>

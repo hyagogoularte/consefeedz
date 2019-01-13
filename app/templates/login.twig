@@ -1,0 +1,84 @@
+{% extends "/layout/base.twig" %}
+
+{% block title %}
+    Login Page
+{% endblock %}
+
+{% block cssInclude %}
+    <link href='{{ base_url() }}/css/auth.css' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block body %}
+    <article id="LoginForm">
+
+        {% if option == 'fail' %}
+            <div class="alert alert-danger text-center">
+                <h4>
+                    Tente novamente
+                </h4>
+            </div>
+        {% endif %}
+
+        {% if option == 'required' %}
+            <div class="alert alert-warning text-center">
+                <h4>
+                    É necessário realizar a autenticação
+                </h4>
+            </div>
+        {% endif %}
+
+        <div class="container">
+
+            <div class="login-form">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="true">Cadastrar</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content main-div">
+                    <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                        <div class="panel">
+                            <h2>Acesso ao painel</h2>
+                            <p>Por favor, entre com seu usuário e email.</p>
+                        </div>
+
+                        <form method="post" action="/login" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control" placeholder="Email">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" name="password" class="form-control" placeholder="Senha">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Entrar</button>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                        <div class="panel">
+                            <h2>Cadastre um usuário</h2>
+                        </div>
+                        <form method="post" action="/register" accept-charset="utf-8" autocomplete="off" role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <input type="email" name="new-email" class="form-control" placeholder="Email">
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" name="new-password" class="form-control" placeholder="Senha">
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Cadastrar</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+{% endblock %}
+
+{% block javascript %}{% endblock %}

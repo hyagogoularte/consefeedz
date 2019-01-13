@@ -1,0 +1,102 @@
+{% extends "/layout/base.twig" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
+        <a class="navbar-brand mr-auto" href="/">Consefeedz</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form action="/logout" class="form-inline mt-2 mt-md-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sair</button>
+        </form>
+    </nav>
+{% endblock %}
+
+{% block body %}
+    {% if option == 'fail-to-create-new-car' %}
+        <div class="alert alert-danger text-center">
+            <h4>
+                Não foi possível cadastrar um carro, tente novamente.
+            </h4>
+        </div>
+    {% endif %}
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-9">
+                <form action="/" method="GET">
+                    <div class="card-body row no-gutters align-items-center">
+                        <div class="col-auto">
+                            <i class="fas fa-search h4 text-body"></i>
+                        </div>
+                        <div class="col">
+                            <input class="form-control form-control-borderless" type="search" name="search" placeholder="Search topics or keywords">
+                        </div>
+                        <div class="col-auto">
+                            <select class="form-control" name="type">
+                                <option value="brand" selected="selected">Marca</option>
+                                <option value="model">Modelo</option>
+                            </select>
+                        </div>
+
+                        <div class="col-auto">
+                            <button class="btn  btn-success" type="submit">Pesquisar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!--end of col-->
+            <div class="col-3 card-body">
+                <a href="/car" class="btn btn-primary">
+                    Cadastrar
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Modelo</th>
+                        <th scope="col">Ano</th>
+                        <th scope="col">Cor</th>
+                        <th scope="col">Data de cadastro</th>
+                        <th scope="col">Opção</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for car in fetchCars %}
+                        <tr>
+                            <td>{{ car.brand }}</td>
+                            <td>{{ car.model }}</td>
+                            <td>{{ car.color }}</td>
+                            <td>{{ car.year }}</td>
+                            <td>{{ car.created_date }}</td>
+                            <td>
+                                <a href="/car/{{ car.id }}" class="btn btn-primary">
+                                    Editar
+                                </a>
+                                <form method="post" action="/car/delete">
+                                    <input type="hidden" name="id" value="{{ car.id }}"/>
+                                    <button type="submit" class="btn btn-danger">
+                                        Deletar
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascript %}{% endblock %}

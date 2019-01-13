@@ -1,0 +1,89 @@
+{% extends "/layout/base.twig" %}
+
+{% block title %}
+    Homepage
+{% endblock %}
+
+{% block cssInclude %}
+    <link href='{{ base_url() }}/css/home.css' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-expand-md navbar-dark  bg-dark">
+        <a class="navbar-brand mr-auto" href="/">Consefeedz</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form action="/logout" class="form-inline mt-2 mt-md-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sair</button>
+        </form>
+    </nav>
+{% endblock %}
+
+{% block body %}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <form method="post" action="/car/edit">
+                    <div class="form-group">
+                        <label class="control-label" for="brand">
+                            Código
+                        </label>
+                        <input id="id" name="id" type="hidden" value="{{getCar.id}}"/>
+                        <input class="form-control" disabled="disabled" id="brand" name="brand" type="text" value="{{getCar.id}}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label" for="brand">
+                            Marca
+                        </label>
+                        <input class="form-control" id="brand" name="brand" type="text" value="{{getCar.brand}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="model">
+                            Modelo
+                        </label>
+                        <input class="form-control" id="model" name="model" type="text" value="{{getCar.model}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="year">
+                            Ano (yyyy)
+                        </label>
+                        <input class="form-control" id="year" name="year" type="number" value="{{getCar.year}}" maxlength="4"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="color">
+                            Cor
+                        </label>
+                        <input class="form-control" id="color" name="color" type="text" value="{{getCar.color}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="color">
+                            Data de cadastro
+                        </label>
+                        <input class="form-control" disabled="disabled" name="date" type="text" value="{{getCar.created_date}}"/>
+                    </div>
+                    <div class="form-group">
+                        <button id="back" class="btn btn-primary" name="submit" type="button">
+                            Voltar
+                        </button>
+                        <button class="btn btn-primary" name="submit" type="submit">
+                            Salvar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $('back').click(function () {
+            window.location.href = '/';
+        });
+    </script>
+{% endblock %}
