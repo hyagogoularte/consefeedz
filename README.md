@@ -22,4 +22,3 @@
 - `log`: Arquivos de LOG
 - `public`: Diretório padrão
 - `vendor`: Dependências do Composer
-# consefeez
